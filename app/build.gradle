@@ -25,6 +25,7 @@ dependencies {
 
     final RETROFIT_VERSION = "2.4.0"
     final MOSHI_VERSION = "1.6.0"
+    final DAGGER_VERSION = "2.17"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -44,6 +45,13 @@ dependencies {
 
     implementation "com.squareup.moshi:moshi:$MOSHI_VERSION"
     kapt  "com.squareup.moshi:moshi-kotlin-codegen:$MOSHI_VERSION"
+
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-android-processor:$DAGGER_VERSION"
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    implementation "com.google.dagger:dagger-android:$DAGGER_VERSION"
+    implementation "com.google.dagger:dagger-android-support:$DAGGER_VERSION"
 }
 
 androidExtensions {

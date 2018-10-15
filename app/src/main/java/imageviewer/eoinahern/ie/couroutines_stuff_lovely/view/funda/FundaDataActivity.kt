@@ -4,25 +4,27 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import dagger.android.AndroidInjection
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.R
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.api.ApiHelper
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.domain.getproperties.GetPropertiesUseCase
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.ioDispatcher
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.model.Property
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.uiDispatcher
+
 import kotlinx.android.synthetic.main.activity_funda_data.*
-import kotlinx.coroutines.experimental.*
+import javax.inject.Inject
 
 class FundaDataActivity : AppCompatActivity(), FundaView {
 
+
+	@Inject
 	lateinit var adapter: PropertyAdapter
+
+	@Inject
 	lateinit var presenter: FundaPresenter
 
 	override fun onCreate(savedInstanceState: Bundle?) {
+		AndroidInjection.inject(this)
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_funda_data)
 		setUpRecycler()
-		presenter = FundaPresenter(GetPropertiesUseCase(ApiHelper.getInstance()))
 		presenter.attachView(this)
 
 		loadData()
@@ -35,7 +37,6 @@ class FundaDataActivity : AppCompatActivity(), FundaView {
 
 	private fun setUpRecycler() {
 		recycler.layoutManager = LinearLayoutManager(this)
-		adapter = PropertyAdapter()
 		recycler.adapter = adapter
 	}
 

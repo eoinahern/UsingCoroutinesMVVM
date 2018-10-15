@@ -36,7 +36,7 @@ abstract class UseCase<T> {
 		}
 	}
 
-	protected suspend fun <k> background(context: CoroutineContext = uiDispatcher, block: () -> k): Deferred<k> {
+	protected suspend fun <k> background(context: CoroutineContext = ioDispatcher, block: () -> k): Deferred<k> {
 		return GlobalScope.async(context + job) {
 			block.invoke()
 		}

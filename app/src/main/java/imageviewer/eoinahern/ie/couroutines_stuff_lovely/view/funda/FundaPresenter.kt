@@ -1,10 +1,12 @@
 package imageviewer.eoinahern.ie.couroutines_stuff_lovely.view.funda
 
+import imageviewer.eoinahern.ie.couroutines_stuff_lovely.di.PerScreen
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.domain.getproperties.GetPropertiesUseCase
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.view.base.BasePresenter
+import javax.inject.Inject
 
-
-class FundaPresenter constructor(private val getPropertiesUseCase: GetPropertiesUseCase) : BasePresenter<FundaView>() {
+@PerScreen
+class FundaPresenter @Inject constructor(private val getPropertiesUseCase: GetPropertiesUseCase) : BasePresenter<FundaView>() {
 
 	fun getDataFromApi() {
 

@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.R
+import imageviewer.eoinahern.ie.couroutines_stuff_lovely.di.PerScreen
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.model.Property
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.single_person_layout.*
+import javax.inject.Inject
 
-
-class PropertyAdapter : RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>() {
+@PerScreen
+class PropertyAdapter @Inject constructor() : RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>() {
 
 	private var propertyList: MutableList<Property> = mutableListOf()
 
