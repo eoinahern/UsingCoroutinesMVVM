@@ -5,7 +5,7 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.MyApp
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.api.FundaApi
+import imageviewer.eoinahern.ie.couroutines_stuff_lovely.data.api.FundaApi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton

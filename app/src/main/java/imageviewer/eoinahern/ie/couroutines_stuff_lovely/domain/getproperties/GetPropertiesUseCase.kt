@@ -1,9 +1,9 @@
 package imageviewer.eoinahern.ie.couroutines_stuff_lovely.domain.getproperties
 
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.api.FundaApi
+import imageviewer.eoinahern.ie.couroutines_stuff_lovely.data.api.FundaApi
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.di.PerScreen
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.domain.UseCase
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.model.Property
+import imageviewer.eoinahern.ie.couroutines_stuff_lovely.data.model.Property
 import java.lang.Exception
 import javax.inject.Inject
 

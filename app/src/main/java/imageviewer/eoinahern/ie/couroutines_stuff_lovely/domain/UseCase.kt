@@ -45,6 +45,4 @@ abstract class UseCase<T> {
 	fun unsubscribe() {
 		job.cancel()
 	}
-
-
 }

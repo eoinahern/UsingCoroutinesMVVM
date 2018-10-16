@@ -1,18 +1,17 @@
 package imageviewer.eoinahern.ie.couroutines_stuff_lovely.view.funda
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.R
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.di.PerScreen
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.model.Property
+import imageviewer.eoinahern.ie.couroutines_stuff_lovely.data.model.Property
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.single_person_layout.*
 import javax.inject.Inject
 
 @PerScreen
-class PropertyAdapter @Inject constructor() : RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>() {
+class PropertyAdapter @Inject constructor() : androidx.recyclerview.widget.RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder>() {
 
 	private var propertyList: MutableList<Property> = mutableListOf()
 
@@ -40,5 +39,5 @@ class PropertyAdapter @Inject constructor() : RecyclerView.Adapter<PropertyAdapt
 	}
 
 
-	inner class PropertyViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+	inner class PropertyViewHolder(override val containerView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer
 }

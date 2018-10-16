@@ -1,6 +1,6 @@
-package imageviewer.eoinahern.ie.couroutines_stuff_lovely.api
+package imageviewer.eoinahern.ie.couroutines_stuff_lovely.data.api
 
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.model.PropertyWrapper
+import imageviewer.eoinahern.ie.couroutines_stuff_lovely.data.model.PropertyWrapper
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

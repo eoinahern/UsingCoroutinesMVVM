@@ -1,4 +1,4 @@
-package imageviewer.eoinahern.ie.couroutines_stuff_lovely.model
+package imageviewer.eoinahern.ie.couroutines_stuff_lovely.data.model
 
 import com.squareup.moshi.JsonClass
 

@@ -1,64 +1,85 @@
 package imageviewer.eoinahern.ie.couroutines_stuff_lovely.view.funda
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.AndroidInjection
 import imageviewer.eoinahern.ie.couroutines_stuff_lovely.R
-import imageviewer.eoinahern.ie.couroutines_stuff_lovely.model.Property
-
+import imageviewer.eoinahern.ie.couroutines_stuff_lovely.data.model.Property
 import kotlinx.android.synthetic.main.activity_funda_data.*
+
+
 import javax.inject.Inject
 
-class FundaDataActivity : AppCompatActivity(), FundaView {
-
+class FundaDataActivity : AppCompatActivity() {
 
 	@Inject
 	lateinit var adapter: PropertyAdapter
 
 	@Inject
-	lateinit var presenter: FundaPresenter
+	lateinit var viewModelFactory: FundaViewModelFactory
+
+	lateinit var viewModel: FundaViewModel
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		AndroidInjection.inject(this)
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_funda_data)
 		setUpRecycler()
-		presenter.attachView(this)
-
+		initViewModel()
 		loadData()
+	}
+
+	private fun initViewModel() {
+
+		viewModel = ViewModelProviders.of(this, viewModelFactory).get(FundaViewModel::class.java)
+
+
+		viewModel.propertiesList().observe(this,
+				Observer<List<Property>> {
+					hideLoading()
+					updateRecycler(it)
+				})
+
+		viewModel.propertyError().observe(this,
+				Observer<String>{
+					if(!it.isNullOrEmpty()) {
+						hideLoading()
+						showError()
+					}
+				})
 	}
 
 	private fun loadData() {
 		showLoading()
-		presenter.getDataFromApi()
+		viewModel.loadPropertyData()
 	}
 
 	private fun setUpRecycler() {
-		recycler.layoutManager = LinearLayoutManager(this)
+		recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 		recycler.adapter = adapter
 	}
 
-	override fun updateRecycler(propertyList: List<Property>) {
+	private fun updateRecycler(propertyList: List<Property>) {
 		adapter.updateList(propertyList)
 	}
 
-	override fun showError() {
-		hideLoading()
+	private fun showError() {
 		errorTxt.visibility = View.VISIBLE
 	}
 
-	override fun showLoading() {
+	private fun showLoading() {
 		progressbar.visibility = View.VISIBLE
 	}
 
-	override fun hideLoading() {
+	private fun hideLoading() {
 		progressbar.visibility = View.GONE
 	}
 
 	override fun onDestroy() {
 		super.onDestroy()
-		presenter.detachView()
+		viewModel.unsubscribe()
 	}
 }
